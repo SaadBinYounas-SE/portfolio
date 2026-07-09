@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@theme {
+  /* Sewood-inspired palette: warm paper, near-black ink, emerald/mint accent */
+  --color-paper: #f6f5f1;
+  --color-paper-2: #edece5;
+  --color-ink: #101311;
+  --color-ink-2: #454c47;
+  --color-ink-3: #7d847e;
+  --color-inkgreen: #0c1411;
+
+  --color-mint-50: #f0f7f3;
+  --color-mint-100: #dfefe6;
+  --color-mint-200: #c4e4d3;
+  --color-mint-300: #9bd2b6;
+  --color-mint-400: #5cb78f;
+  --color-mint-500: #16a578;
+  --color-mint-600: #0f8560;
+  --color-mint-700: #0c684c;
+  --color-mint-800: #0b5340;
+  --color-mint-900: #0a2e24;
+
+  --color-blush: #f6d9d2;
+  --color-lavender: #e4dcf6;
+  --color-sky: #d6e7f5;
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-spin-slow: spin 16s linear infinite;
+  --animate-drift-a: drift-a 22s ease-in-out infinite;
+  --animate-drift-b: drift-b 26s ease-in-out infinite;
+  --animate-drift-c: drift-c 30s ease-in-out infinite;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -35px) scale(1.12);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.08);
+  }
+  50% {
+    transform: translate(-45px, 30px) scale(0.95);
+  }
+}
+
+@keyframes drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(0.96);
+  }
+  50% {
+    transform: translate(30px, 45px) scale(1.1);
+  }
+}
+
+/* Shared section rhythm + anchor offset.
+   scroll-margin-top clears the fixed navbar (~4.5rem) so anchored navigation
+   lands with the heading tucked just under the nav — no dead space above it. */
+.section-anchor {
+  scroll-margin-top: 4.5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 768px) {
+  .section-anchor {
+    padding-top: 3.5rem;
+    padding-bottom: 8rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-mint-200);
+  color: var(--color-ink);
+}
+
+/* Paper grain — SVG turbulence noise, tiled */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+/* Fade the marquee belt edges */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Fade the hero arch into the page so the portrait merges with the background */
+.arch-fade {
+  mask-image: linear-gradient(to bottom, black 72%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 98%);
+}
