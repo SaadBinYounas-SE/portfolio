@@ -1,7 +1,9 @@
-import { education, experience } from "@/data/profile";
-import EducationCard from "./EducationCard";
+import { experience } from "@/data/profile";
+import { techIcons } from "@/data/techIcons";
+import EducationList from "./EducationList";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
+import TechLogo from "./ui/TechLogo";
 import { GraduationCapIcon } from "./ui/icons";
 
 export default function Experience() {
@@ -66,8 +68,9 @@ export default function Experience() {
                     {job.tech.map((t) => (
                       <span
                         key={t}
-                        className="rounded-full border border-ink/10 bg-white/70 px-3 py-1 text-xs font-medium text-ink-2"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/70 px-3 py-1 text-xs font-medium text-ink-2"
                       >
+                        {techIcons[t] && <TechLogo name={t} className="h-3.5 w-3.5" />}
                         {t}
                       </span>
                     ))}
@@ -78,22 +81,16 @@ export default function Experience() {
           </ol>
         </div>
 
-        {/* Education — expandable cards */}
+        {/* Education — click a card for the curriculum */}
         <Reveal className="mt-16">
           <h3 className="flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight text-ink md:text-2xl">
             <GraduationCapIcon className="h-6 w-6 text-mint-600" />
             Education
           </h3>
-          <p className="mt-2 text-[15px] text-ink-3">Tap a card to see what I studied.</p>
+          <p className="mt-2 text-[15px] text-ink-3">Click a card for the curriculum.</p>
         </Reveal>
 
-        <div className="mt-6 space-y-4">
-          {education.map((edu, i) => (
-            <Reveal key={edu.school} delay={i * 0.08}>
-              <EducationCard edu={edu} index={i} />
-            </Reveal>
-          ))}
-        </div>
+        <EducationList />
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import SkillsAccordion from "./SkillsAccordion";
+import SkillsGrid from "./SkillsGrid";
 import Reveal from "./ui/Reveal";
 import SectionHeading from "./ui/SectionHeading";
 
@@ -9,11 +9,11 @@ export default function Skills() {
         <SectionHeading
           eyebrow="tech stack"
           title="Tools I ship with"
-          sub="Grouped the way I actually reach for them — expand any category to see the stack, logos and all."
+          sub="Grouped the way I actually reach for them — click any category to see the full stack, logos and all."
         />
 
         <Reveal className="mt-12 md:mt-14">
-          <SkillsAccordion />
+          <SkillsGrid />
         </Reveal>
       </div>
     </section>

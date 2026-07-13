@@ -7,7 +7,7 @@ import headshot from "../../public/images/headshot.png";
 import RotatingBadge from "./ui/RotatingBadge";
 import Squiggle from "./ui/Squiggle";
 import TechMarquee from "./TechMarquee";
-import { ArrowUpRightIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from "./ui/icons";
+import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from "./ui/icons";
 
 const ease = [0.21, 0.65, 0.28, 0.99] as const;
 
@@ -49,42 +49,26 @@ export default function Hero() {
         </motion.div>
 
         <div className="flex flex-col items-center">
-          {/* Availability chip */}
-          <motion.a
-            href="#contact"
-            {...fadeUp(0.05)}
-            className="group inline-flex items-center gap-2.5 rounded-full border border-mint-500/25 bg-mint-50/80 py-1.5 pl-3 pr-4 text-[13px] font-semibold text-mint-800 backdrop-blur-sm transition-colors hover:border-mint-500/50"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mint-500 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-mint-500" />
-            </span>
-            Available for new projects
-            <ArrowUpRightIcon className="h-3.5 w-3.5 opacity-60 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </motion.a>
-
           {/* Portrait arch + squiggle + rotating badge */}
-          <div className="relative mt-8 md:mt-10">
+          <div className="relative mt-4 md:mt-6">
             {/* back layer of the wrap-around line (visible outside the arch) */}
             <Squiggle
               layer="back"
               className="absolute left-1/2 top-[46%] z-0 w-[175%] -translate-x-1/2"
             />
 
-            <motion.div
-              initial={{ opacity: 0, y: 44, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.15, ease }}
-              className="arch-fade relative z-10 aspect-[4/5] w-[min(76vw,19rem)] overflow-hidden rounded-t-full bg-mint-100/40 sm:w-[21rem] md:w-[24rem]"
-            >
+            {/* Plain (non-animated) wrapper: animating a transform on a mask-image
+                element intermittently fails to paint until refresh. */}
+            <div className="arch-fade relative z-10 aspect-[4/5] w-[min(76vw,19rem)] overflow-hidden rounded-t-full bg-mint-100/40 sm:w-[21rem] md:w-[24rem]">
               <Image
                 src={headshot}
                 alt="Saad Bin Younas — professional headshot"
                 priority
+                placeholder="blur"
                 sizes="(max-width: 640px) 76vw, (max-width: 768px) 336px, 384px"
                 className="h-full w-full object-cover object-top"
               />
-            </motion.div>
+            </div>
 
             {/* front layer of the line — clipped so it crosses in front of the portrait */}
             <Squiggle
@@ -139,10 +123,9 @@ export default function Hero() {
           <motion.div {...fadeUp(0.72)} className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
             <a
               href="#work"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-paper transition-all duration-300 hover:bg-mint-600 hover:shadow-[0_14px_30px_-12px_rgba(15,133,96,0.8)]"
+              className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-paper transition-all duration-300 hover:bg-mint-600 hover:shadow-[0_14px_30px_-12px_rgba(15,133,96,0.8)]"
             >
               View Work
-              <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
               href="#contact"

@@ -16,6 +16,7 @@ export default function About() {
               <Image
                 src={headshot}
                 alt={`${profile.name} — portrait`}
+                placeholder="blur"
                 sizes="(max-width: 1024px) 90vw, 440px"
                 className="h-full w-full object-cover object-top"
               />

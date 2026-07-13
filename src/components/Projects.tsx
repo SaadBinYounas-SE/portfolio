@@ -11,13 +11,13 @@ export default function Projects() {
         <SectionHeading
           eyebrow="selected work"
           title="Projects that carry real load"
-          sub="Production systems with real users, real data, and real stakes — not weekend demos. Expand any project to see the architecture story and the full stack behind it."
+          sub="Production systems with real users, real data, and real stakes — not weekend demos. Click any project for the full case study."
         />
 
         <div className="mt-12 space-y-4 md:mt-14">
           {projects.map((project, i) => (
             <Reveal key={project.title} delay={i < 4 ? i * 0.05 : 0}>
-              <ProjectCard project={project} index={i} />
+              <ProjectCard project={project} />
             </Reveal>
           ))}
         </div>

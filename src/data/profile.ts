@@ -19,7 +19,9 @@ export const profile = {
   socials: {
     github: "https://github.com/SaadBinYounas-SE",
     linkedin: "https://www.linkedin.com/in/saad-bin-younas-830485248/",
-    email: "mailto:ranasaadbinyounas@gmail.com",
+    // Opens Gmail's compose window with the "to" field pre-filled.
+    email:
+      "https://mail.google.com/mail/?view=cm&fs=1&to=ranasaadbinyounas@gmail.com&su=Let%27s%20work%20together",
   },
 } as const;
 
@@ -36,17 +38,17 @@ export const WEB3FORMS_ACCESS_KEY: string = "f7247774-8772-48eb-9ed7-385356e286a
 /* ------------------------------------------------------------------ */
 
 export const about = {
-  heading: "Full-stack development and automation engineering — a rare combination.",
+  heading: "I build the systems businesses run on — end to end.",
   paragraphs: [
-    "I’m a software engineer comfortable operating across the full product lifecycle — from technical scoping and architecture through to deployment and handover. At Automaxion LLC, I own end-to-end delivery across multiple concurrent client projects: full-stack web applications, no-code/low-code automation pipelines, and AI-powered integrations.",
-    "The work I’m most proud of: ShiftGrit, a fully automated AI voice booking system that replaced a medical firm’s receptionist workflows end-to-end; a live multi-brand CRM for U.S. stock-market sales operations that I grew from 40+ Airtable automations into a complete full-stack rebuild; and BrandLift AI, a platform that turns any website URL into branded social content with Google Vision, Imagen 3, and Veo.",
-    "I’m equally comfortable writing custom backend logic from scratch as I am picking up a new platform and shipping production workflows within days — and I bring the documentation culture to match: architecture diagrams, ER and state diagrams, and formal migration proposals that guide clients from no-code platforms to bespoke systems.",
+    "I’m a software engineer comfortable operating across the full product lifecycle — from technical scoping and architecture through to deployment and handover.",
+    "I turn ambiguous problems into production systems. I architect normalized, multi-tenant databases, build type-safe backends in NestJS, Node, and Python, and ship fast, responsive frontends in React and Next.js — then own the deployment and the reviews that keep them healthy. I lead delivery teams and hold the standard for what ships.",
+    "My work runs at real scale: white-label platforms handling tens of thousands of records, AI voice, vision, and generative features wired into live products, and automation pipelines that quietly replace entire manual workflows. And I do it working directly with clients — scoping the requirements, writing the proposals, and translating business goals into systems they can depend on.",
   ],
   stats: [
-    { value: "40K+", label: "leads running through platforms I’ve built" },
-    { value: "40+", label: "production automations engineered & maintained" },
-    { value: "31", label: "ordered database migrations shipped to production" },
-    { value: "6", label: "AI technologies integrated into client products" },
+    { value: "100K+", label: "leads & records powered by my systems" },
+    { value: "100+", label: "production automations engineered" },
+    { value: "8+", label: "products shipped end-to-end" },
+    { value: "12+", label: "AI & automation integrations shipped" },
   ],
 } as const;
 
@@ -67,7 +69,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    role: "Automation Engineer & Full-Stack Lead",
+    role: "Automation Engineer & Full-Stack Developer",
     company: "Automaxion LLC",
     meta: "Full-Time · On-Site",
     location: "Lahore, PK",
@@ -221,42 +223,26 @@ export const skillGroups: SkillGroup[] = [
     blurb: "Ship, run & collaborate.",
     skills: ["Vercel", "Railway", "Linux", "Git", "GitHub", "Jira", "Figma", "Playwright", "Selenium"],
   },
-  {
-    title: "Architecture & Practices",
-    icon: "shield",
-    blurb: "How I keep systems sound.",
-    concepts: true,
-    skills: [
-      "Schema design & normalization",
-      "Multi-tenant / white-label",
-      "Audit logging",
-      "JWT / RBAC",
-      "HMAC-signed webhooks",
-      "HLD / LLD",
-      "ER & state diagrams",
-      "Separation of concerns",
-    ],
-  },
 ];
 
-/** Wordmarks for the hero marquee belt */
+/** Hero marquee belt — keys must match techIcons so each shows its brand logo. */
 export const marqueeItems = [
   "React",
-  "TypeScript",
   "Next.js",
+  "TypeScript",
+  "Node.js",
   "NestJS",
   "PostgreSQL",
   "Python",
+  "Tailwind CSS",
+  "Supabase",
+  "Drizzle ORM",
+  "Firebase",
   "Airtable",
   "N8N",
   "Make.com",
-  "Retell AI",
-  "Supabase",
-  "Drizzle ORM",
   "React Native",
-  "Tailwind CSS",
-  "Google Vision API",
-  "Firebase",
+  "Vercel",
 ];
 
 /* ------------------------------------------------------------------ */
@@ -293,7 +279,7 @@ export const projects: Project[] = [
       "The operational backbone for a multi-brand outbound telesales firm targeting U.S. small-cap public companies (NASDAQ / NYSE / OTC / TSX) — roughly 40K leads across 3 sales brands, feeding the parent firm’s investment and financing engagements.",
       "I designed the normalized PostgreSQL schema — a white-label organization → brand → sub-brand hierarchy with trigger-based audit logging and full RBAC over JWT with refresh rotation, shipped across 31 ordered Drizzle migrations. The backend is a multi-service NestJS monorepo (write-authority API + cron/event-driven automations service) communicating over HMAC-signed webhooks with constant-time verification, fronted by a React + Vite app with role-scoped navigation and a TanStack Query data layer.",
     ],
-    metrics: ["~40K leads", "3 sales brands", "31 ordered migrations", "HMAC-signed services"],
+    metrics: ["~40K leads", "3 sales brands", "Multi-service backend", "HMAC-signed services"],
     tech: ["React", "NestJS", "PostgreSQL", "Supabase", "Drizzle ORM", "TypeScript", "JWT/RBAC", "HMAC Webhooks"],
     diagram: "schema",
   },
@@ -349,7 +335,7 @@ export const projects: Project[] = [
   },
   {
     index: "05",
-    title: "POV AI Restaurant — Inbound Voice Agent",
+    title: "AI Restaurant — Inbound Voice Agent",
     category: "AI Voice Concept",
     year: "2025",
     role: "Full-Stack Developer",

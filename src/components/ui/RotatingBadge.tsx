@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 import { ArrowDownIcon } from "./icons";
 
-/** Sewood-style circular rotating "let's talk" badge — links to the contact section. */
+/** Sewood-style circular rotating badge — a confident invite to the contact form. */
 export default function RotatingBadge({ className = "" }: { className?: string }) {
   return (
     <motion.a
       href="#contact"
-      aria-label="Open to work — jump to contact"
+      aria-label="Let’s collaborate — get in touch"
       className={`group block ${className}`}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -27,7 +27,7 @@ export default function RotatingBadge({ className = "" }: { className?: string }
           <text className="fill-ink text-[9.5px] font-semibold uppercase">
             {/* textLength = circle circumference (2π·40) so the loop closes without overlap */}
             <textPath href="#badge-circle" textLength="251" lengthAdjust="spacingAndGlyphs">
-              Open to work • Let’s talk •
+              Let’s collaborate • Say hello •
             </textPath>
           </text>
         </svg>
