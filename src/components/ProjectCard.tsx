@@ -6,7 +6,7 @@ import { techIcons } from "@/data/techIcons";
 import ProjectDiagram from "./ProjectDiagram";
 import Modal from "./ui/Modal";
 import TechLogo from "./ui/TechLogo";
-import { ExpandIcon } from "./ui/icons";
+import { ArrowUpRightIcon, ExpandIcon } from "./ui/icons";
 
 const dotGrid = {
   backgroundImage: "radial-gradient(circle, rgba(12,104,76,0.16) 1px, transparent 1px)",
@@ -122,6 +122,23 @@ export default function ProjectCard({ project }: { project: Project }) {
                     </span>
                     {metric}
                   </span>
+                ))}
+              </div>
+            )}
+
+            {project.links && (
+              <div className="mt-5 flex flex-wrap gap-2.5">
+                {project.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group/link inline-flex items-center gap-1.5 rounded-full border border-ink/12 bg-white px-3.5 py-1.5 text-[13px] font-semibold text-ink-2 transition-colors duration-300 hover:border-mint-500 hover:text-mint-700"
+                  >
+                    {link.label}
+                    <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
                 ))}
               </div>
             )}

@@ -103,6 +103,127 @@ function SchemaDiagram() {
   );
 }
 
+/** MonthWiseTravel — one config + one dataset fan out into a static page matrix. */
+function SeoDiagram() {
+  const cells: [number, number][] = [];
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) cells.push([c, r]);
+  return (
+    <svg viewBox="0 0 320 240" fill="none" className="h-full w-full" aria-hidden>
+      {/* sources → build */}
+      <motion.path d="M100 40 H120 V64 M106 84 H120 V64 M120 64 H128" stroke={stroke} strokeWidth="1.4" {...draw(0.3)} />
+      {/* build → matrix */}
+      <motion.path d="M172 64 H196" stroke={stroke} strokeWidth="1.4" {...draw(0.6)} />
+      {/* build → seo layer */}
+      <motion.path
+        d="M150 84 V150 M34 150 H286 M34 150 V172 M160 150 V172 M286 150 V172"
+        stroke={soft}
+        strokeWidth="1.4"
+        strokeDasharray="4 4"
+        {...draw(1.05)}
+      />
+
+      <motion.g {...pop(0.1)}>
+        <Box x={16} y={26} w={84} h={28} label="CONFIG" />
+      </motion.g>
+      <motion.g {...pop(0.2)}>
+        <Box x={10} y={70} w={96} h={28} label="CLIMATE JSON" />
+      </motion.g>
+      <motion.g {...pop(0.45)}>
+        <path d="M150 44 172 64 150 84 128 64Z" fill="white" stroke={stroke} strokeWidth="1.4" />
+        <Label x={150} y={67}>BUILD</Label>
+      </motion.g>
+
+      <motion.g {...pop(0.65)}>
+        <Label x={250} y={36}>15 × 12 MATRIX</Label>
+      </motion.g>
+      {cells.map(([c, r], i) => (
+        <motion.rect
+          key={`${c}-${r}`}
+          x={206 + c * 24}
+          y={44 + r * 20}
+          width={20}
+          height={16}
+          rx={3}
+          fill={r === 0 ? "var(--color-mint-100)" : "var(--color-mint-50)"}
+          stroke={soft}
+          strokeWidth="1"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ delay: 0.65 + i * 0.03, duration: 0.3 }}
+        />
+      ))}
+      <motion.g {...pop(0.95)}>
+        <Label x={250} y={118}>208 URLS</Label>
+      </motion.g>
+
+      <motion.g {...pop(1.05)}>
+        <Box x={14} y={172} w={80} h={26} label="SITEMAP" dashed />
+        <Box x={120} y={172} w={80} h={26} label="JSON-LD" dashed />
+        <Box x={226} y={172} w={80} h={26} label="CANONICAL" dashed />
+      </motion.g>
+      <motion.g {...pop(1.15)}>
+        <Label x={160} y={222}>GENERATED FROM ONE SOURCE</Label>
+      </motion.g>
+    </svg>
+  );
+}
+
+/** YelpScraper — the unlocker layer carries the headless browser through the anti-bot wall. */
+function ScraperDiagram() {
+  return (
+    <svg viewBox="0 0 320 240" fill="none" className="h-full w-full" aria-hidden>
+      {/* search → unlocker → wall → source */}
+      <motion.path d="M78 40 H100" stroke={stroke} strokeWidth="1.4" {...draw(0.25)} />
+      <motion.path d="M168 40 H194" stroke={soft} strokeWidth="1.6" strokeDasharray="4 4" {...draw(0.5)} />
+      <motion.path d="M234 40 H258" stroke={soft} strokeWidth="1.6" strokeDasharray="4 4" {...draw(0.65)} />
+      {/* source → api */}
+      <motion.path d="M284 56 V86 M160 86 H284 M160 86 V100" stroke={stroke} strokeWidth="1.4" {...draw(0.85)} />
+      {/* api → outputs */}
+      <motion.path d="M160 132 V146 M72 146 H250 M72 146 V162 M250 146 V162" stroke={stroke} strokeWidth="1.4" {...draw(1.05)} />
+
+      <motion.g {...pop(0.1)}>
+        <Box x={14} y={26} w={64} h={28} label="SEARCH" />
+      </motion.g>
+      <motion.g {...pop(0.3)}>
+        <Box x={100} y={26} w={68} h={28} label="UNLOCKER" />
+      </motion.g>
+      {/* the anti-bot wall it passes through */}
+      <motion.g {...pop(0.5)}>
+        <path
+          d="M214 18 234 26v13c0 9.5-20 16-20 16s-20-6.5-20-16V26l20-8Z"
+          fill="var(--color-mint-50)"
+          stroke={stroke}
+          strokeWidth="1.4"
+        />
+        <path d="M206 36h16M214 30v12" stroke={soft} strokeWidth="1.6" strokeLinecap="round" />
+        <Label x={214} y={68}>PERIMETERX</Label>
+      </motion.g>
+      <motion.g {...pop(0.7)}>
+        <Box x={258} y={26} w={50} h={28} label="YELP" />
+      </motion.g>
+
+      <motion.g {...pop(0.95)}>
+        <Box x={96} y={100} w={128} h={32} label="FLASK · SSE" />
+      </motion.g>
+
+      {/* live table */}
+      <motion.g {...pop(1.0)}>
+        <rect x={22} y={162} width={100} height={56} rx={9} fill="white" stroke={stroke} strokeWidth="1.4" />
+        <rect x={22} y={162} width={100} height={20} rx={9} fill="var(--color-mint-50)" stroke={stroke} strokeWidth="1.4" />
+        <Label x={72} y={176}>RESULTS</Label>
+        <path d="M34 194h76M34 204h76M34 212h48" stroke={soft} strokeWidth="2" strokeLinecap="round" />
+      </motion.g>
+      {/* per-user store */}
+      <motion.g {...pop(1.1)}>
+        <ellipse cx={250} cy={170} rx={30} ry={8} fill="white" stroke={stroke} strokeWidth="1.4" />
+        <path d="M220 170v28c0 4.4 13.4 8 30 8s30-3.6 30-8v-28" fill="white" stroke={stroke} strokeWidth="1.4" />
+        <Label x={250} y={228}>PER-USER</Label>
+      </motion.g>
+    </svg>
+  );
+}
+
 function VoiceDiagram() {
   return (
     <svg viewBox="0 0 320 240" fill="none" className="h-full w-full" aria-hidden>
@@ -337,6 +458,8 @@ function SyncDiagram() {
 
 export type DiagramVariant =
   | "schema"
+  | "seo"
+  | "scraper"
   | "voice"
   | "generate"
   | "airtable"
@@ -348,6 +471,10 @@ export default function ProjectDiagram({ variant }: { variant: DiagramVariant })
   switch (variant) {
     case "schema":
       return <SchemaDiagram />;
+    case "seo":
+      return <SeoDiagram />;
+    case "scraper":
+      return <ScraperDiagram />;
     case "voice":
       return <VoiceDiagram />;
     case "generate":

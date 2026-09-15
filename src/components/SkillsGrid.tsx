@@ -33,16 +33,24 @@ export default function SkillsGrid() {
             <h3 className="mt-4 font-display text-lg font-bold tracking-tight text-ink">{g.title}</h3>
             <p className="mt-1 flex-1 text-sm leading-snug text-ink-3">{g.blurb}</p>
 
-            {/* logo preview row */}
+            {/* preview row — brand logos, or name chips for concept groups */}
             <div className="mt-4 flex items-center gap-2">
-              {!g.concepts &&
-                g.skills.slice(0, 5).map((s) => (
-                  <span key={s} className="grid h-7 w-7 place-items-center rounded-lg bg-white ring-1 ring-ink/5">
-                    <TechLogo name={s} className="h-4 w-4" />
-                  </span>
-                ))}
-              {g.skills.length > 5 && !g.concepts && (
-                <span className="text-xs font-semibold text-ink-3">+{g.skills.length - 5}</span>
+              {g.concepts
+                ? g.skills.slice(0, 2).map((s) => (
+                    <span
+                      key={s}
+                      className="shrink-0 whitespace-nowrap rounded-lg bg-white px-2 py-1.5 text-[11px] font-semibold text-ink-2 ring-1 ring-ink/5"
+                    >
+                      {s}
+                    </span>
+                  ))
+                : g.skills.slice(0, 5).map((s) => (
+                    <span key={s} className="grid h-7 w-7 place-items-center rounded-lg bg-white ring-1 ring-ink/5">
+                      <TechLogo name={s} className="h-4 w-4" />
+                    </span>
+                  ))}
+              {g.skills.length > (g.concepts ? 2 : 5) && (
+                <span className="text-xs font-semibold text-ink-3">+{g.skills.length - (g.concepts ? 2 : 5)}</span>
               )}
               <span className="ml-auto inline-flex items-center gap-1.5 text-[13px] font-semibold text-mint-600 transition-transform duration-300 group-hover:scale-105">
                 View

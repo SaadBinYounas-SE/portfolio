@@ -40,14 +40,15 @@ export const WEB3FORMS_ACCESS_KEY: string = "f7247774-8772-48eb-9ed7-385356e286a
 export const about = {
   heading: "I build the systems businesses run on — end to end.",
   paragraphs: [
-    "I’m a software engineer comfortable operating across the full product lifecycle — from technical scoping and architecture through to deployment and handover.",
-    "I turn ambiguous problems into production systems. I architect normalized, multi-tenant databases, build type-safe backends in NestJS, Node, and Python, and ship fast, responsive frontends in React and Next.js — then own the deployment and the reviews that keep them healthy. I lead delivery teams and hold the standard for what ships.",
-    "My work runs at real scale: white-label platforms handling tens of thousands of records, AI voice, vision, and generative features wired into live products, and automation pipelines that quietly replace entire manual workflows. And I do it working directly with clients — scoping the requirements, writing the proposals, and translating business goals into systems they can depend on.",
+    "I’m a software engineer comfortable operating across the full product lifecycle — from technical scoping and architecture through to deployment, handover, and the operational work that keeps systems running afterwards.",
+    "I turn ambiguous problems into production systems. I architect normalized, multi-tenant databases, build type-safe backends in NestJS, Node, and Python, and ship fast, responsive frontends in React and Next.js — then own the deployment, the migrations, and the reviews that keep them healthy. I lead delivery teams and hold the standard for what ships.",
+    "My work runs at real scale: white-label platforms holding hundreds of thousands of records and running entire sales floors, AI voice, vision, and generative features wired into live products, and data and automation pipelines that quietly replace whole manual workflows.",
+    "And I do it working directly with clients — scoping the requirements, writing the proposals and discovery documents, and translating business goals into systems they can depend on.",
   ],
   stats: [
-    { value: "100K+", label: "leads & records powered by my systems" },
+    { value: "700K+", label: "records powering the systems I’ve built" },
     { value: "100+", label: "production automations engineered" },
-    { value: "8+", label: "products shipped end-to-end" },
+    { value: "10+", label: "products shipped end-to-end" },
     { value: "12+", label: "AI & automation integrations shipped" },
   ],
 } as const;
@@ -77,12 +78,25 @@ export const experience: Experience[] = [
     current: true,
     bullets: [
       "Own the full delivery lifecycle across concurrent client engagements — scoping, system design, architecture, full-stack implementation, deployment, and handover.",
-      "Maintain and extend mature no-code/low-code platforms (Airtable, N8N, Make.com, Google Apps Script) in production while concurrently delivering full-stack rebuilds in React, NestJS, TypeScript, Python, and PostgreSQL.",
-      "Lead a small delivery team via GitHub — issue assignment, branch and pull-request review, and cross-service coordination across frontend, backend, and automation tracks.",
-      "Integrate voice and vision AI (Retell AI, Google Vision / Video Intelligence API, generative models) into client-facing products and workflows.",
-      "Produce end-to-end technical documentation — architecture diagrams, ER and state diagrams, user stories, and formal migration proposals guiding clients from no-code platforms to bespoke full-stack solutions.",
+      "Architect and build multi-tenant platforms end to end — normalized PostgreSQL schemas, type-safe NestJS and Python services, and React frontends — including a white-label CRM that runs a client’s entire sales operation.",
+      "Integrate AI into client-facing products: voice agents that handle live booking and ordering calls, and vision and generative pipelines that turn a website into branded ad content.",
+      "Build the data and automation layer — scraping and lead-generation pipelines, ETL migrations off no-code platforms, and event-driven and scheduled workflows that replace manual processes outright.",
+      "Maintain and extend mature no-code/low-code platforms (Airtable, N8N, Make.com, Google Apps Script) in production while concurrently delivering full-stack rebuilds that succeed them.",
+      "Lead a small delivery team via GitHub — issue assignment, branch and pull-request review, cross-service coordination — and own production operations, including security incident response across client repositories.",
+      "Produce end-to-end technical documentation — architecture diagrams, ER and state diagrams, QA test plans, and formal discovery and migration proposals guiding clients from no-code platforms to bespoke full-stack solutions.",
     ],
-    tech: ["React", "NestJS", "TypeScript", "Python", "PostgreSQL", "Airtable", "N8N", "Make.com", "Retell AI"],
+    tech: [
+      "NestJS",
+      "React",
+      "TypeScript",
+      "PostgreSQL",
+      "RabbitMQ",
+      "Drizzle ORM",
+      "Python",
+      "Airtable",
+      "N8N",
+      "Retell AI",
+    ],
   },
   {
     role: "Junior Software Developer",
@@ -168,7 +182,17 @@ export const education: Education[] = [
 
 export type SkillGroup = {
   title: string;
-  icon: "code" | "layout" | "server" | "database" | "bolt" | "rocket" | "shield";
+  icon:
+    | "code"
+    | "layout"
+    | "server"
+    | "database"
+    | "bolt"
+    | "rocket"
+    | "shield"
+    | "plug"
+    | "sparkles"
+    | "wrench";
   blurb: string;
   /** Skill labels — matched against techIcons for brand logos where available. */
   skills: string[];
@@ -181,7 +205,7 @@ export const skillGroups: SkillGroup[] = [
     title: "Languages",
     icon: "code",
     blurb: "The core I build in daily.",
-    skills: ["TypeScript", "JavaScript", "Python", "Java", "C++", "SQL"],
+    skills: ["TypeScript", "JavaScript", "Python", "Java", "C++"],
   },
   {
     title: "Frontend",
@@ -193,13 +217,31 @@ export const skillGroups: SkillGroup[] = [
     title: "Backend & APIs",
     icon: "server",
     blurb: "Services, endpoints & integrations.",
-    skills: ["NestJS", "Node.js", "Fastify", "Express.js", "FastAPI", "PHP Laravel", "Postman"],
+    skills: ["NestJS", "Node.js", "Fastify", "Express.js", "FastAPI", "Flask", "PHP Laravel", "Postman"],
   },
   {
     title: "Databases & ORM",
     icon: "database",
     blurb: "Schema design to data access.",
     skills: ["PostgreSQL", "Supabase", "Drizzle ORM", "Prisma", "Firebase", "Oracle", "Google Sheets"],
+  },
+  {
+    title: "Architecture & Systems",
+    icon: "plug",
+    blurb: "How the pieces fit together.",
+    concepts: true,
+    skills: [
+      "System design",
+      "Multi-tenant data modelling",
+      "Event-driven architecture",
+      "Message queues",
+      "REST API design",
+      "Auth, JWT & RBAC",
+      "Real-time & streaming",
+      "Audit logging",
+      "ETL & data migration",
+      "Technical documentation",
+    ],
   },
   {
     title: "Automation & AI",
@@ -221,7 +263,20 @@ export const skillGroups: SkillGroup[] = [
     title: "DevOps & Tools",
     icon: "rocket",
     blurb: "Ship, run & collaborate.",
-    skills: ["Vercel", "Railway", "Linux", "Git", "GitHub", "Jira", "Figma", "Playwright", "Selenium"],
+    skills: [
+      "Vercel",
+      "Linux",
+      "Git",
+      "GitHub",
+      "Railway",
+      "Docker",
+      "Nginx",
+      "PM2",
+      "Jira",
+      "Figma",
+      "Playwright",
+      "Selenium",
+    ],
   },
 ];
 
@@ -249,6 +304,8 @@ export const marqueeItems = [
 /* Projects — one unified, expandable list (featured + more builds)    */
 /* ------------------------------------------------------------------ */
 
+export type ProjectLink = { label: string; href: string };
+
 export type Project = {
   index: string;
   title: string;
@@ -261,7 +318,18 @@ export type Project = {
   description: string[];
   metrics?: string[];
   tech: string[];
-  diagram: "schema" | "voice" | "generate" | "airtable" | "restaurant" | "mobile" | "sync";
+  /** Live / source links surfaced inside the case study. */
+  links?: ProjectLink[];
+  diagram:
+    | "schema"
+    | "seo"
+    | "scraper"
+    | "voice"
+    | "generate"
+    | "airtable"
+    | "restaurant"
+    | "mobile"
+    | "sync";
   featured?: boolean;
 };
 
@@ -271,25 +339,79 @@ export const projects: Project[] = [
     title: "Sidago CRM — Multi-Brand White-Label Platform",
     category: "Full-Stack Platform",
     year: "2025 — Present",
-    role: "Architect & Full-Stack Lead",
+    role: "Architect & Backend Lead",
     featured: true,
     blurb:
-      "The full-stack rebuild powering a multi-brand U.S. telesales operation — ~40K leads, a white-label brand hierarchy, and HMAC-signed services.",
+      "The operational backbone of a multi-brand U.S. telesales firm — a white-label platform running the client’s entire sales floor, on a schema and backend I designed and own.",
     description: [
-      "The operational backbone for a multi-brand outbound telesales firm targeting U.S. small-cap public companies (NASDAQ / NYSE / OTC / TSX) — roughly 40K leads across 3 sales brands, feeding the parent firm’s investment and financing engagements.",
-      "I designed the normalized PostgreSQL schema — a white-label organization → brand → sub-brand hierarchy with trigger-based audit logging and full RBAC over JWT with refresh rotation, shipped across 31 ordered Drizzle migrations. The backend is a multi-service NestJS monorepo (write-authority API + cron/event-driven automations service) communicating over HMAC-signed webhooks with constant-time verification, fronted by a React + Vite app with role-scoped navigation and a TanStack Query data layer.",
+      "The operational backbone for a multi-brand outbound telesales firm targeting U.S. small-cap public companies (NASDAQ / NYSE / OTC / TSX) — three sales brands and tens of thousands of leads, feeding the parent firm’s investment and financing engagements. I own the backend, the automations service, the shared schema package, and every production migration.",
+      "I designed the normalized PostgreSQL schema — a white-label organization → brand → sub-brand hierarchy with trigger-based audit logging and full role-based access control over JWT. The backend is a multi-service NestJS monorepo: a write-authority API alongside a cron- and event-driven automations service, fronted by a React + Vite app with role-scoped navigation and a TanStack Query data layer.",
+      "It runs the whole floor: lead assignment and call queues, dialer integration with call verification that reconciles agent-reported outcomes against carrier records, a configurable lead lifecycle, automated email tracks, leaderboards and scoring, and live dashboards. A shared server-side query layer gives every grid in the product real search, filtering, sorting, and nested grouping across the full dataset rather than the current page.",
+      "I also moved the business off its no-code predecessor — a staged, dry-runnable ETL migrating roughly 700K rows into PostgreSQL with de-duplication and data recovery — and re-architected the write path around an event-driven message queue when cross-continent latency made synchronous processing untenable.",
     ],
-    metrics: ["~40K leads", "3 sales brands", "Multi-service backend", "HMAC-signed services"],
-    tech: ["React", "NestJS", "PostgreSQL", "Supabase", "Drizzle ORM", "TypeScript", "JWT/RBAC", "HMAC Webhooks"],
+    metrics: ["3 sales brands · 36K leads", "~700K rows migrated", "Multi-service backend", "Full RBAC & audit trail"],
+    tech: [
+      "NestJS",
+      "PostgreSQL",
+      "RabbitMQ",
+      "Drizzle ORM",
+      "React",
+      "Vite",
+      "TypeScript",
+      "Supabase",
+      "Socket.IO",
+      "Nginx",
+    ],
     diagram: "schema",
   },
   {
     index: "02",
+    title: "MonthWiseTravel — Programmatic SEO Engine",
+    category: "Programmatic SEO",
+    year: "2026",
+    role: "Solo Build",
+    featured: true,
+    blurb:
+      "208 pre-rendered, independently indexable pages generated from one config file and a single climate dataset — indexed by Google in ~10 days from a cold domain.",
+    description: [
+      "A programmatic SEO engine that generates 208 pre-rendered, independently indexable URLs from a single config file and one JSON dataset — a 15-destination × 12-month combinatorial matrix (180 leaf pages) plus 28 hub pages, all statically rendered at build time.",
+      "The build-time pipeline ingests roughly ten years of daily historical climate data per destination (~55,000 records) from the Open-Meteo Historical Weather API, aggregates it into monthly statistics, and persists a climate.json snapshot as the single source of truth — pages build from the snapshot, never from live API calls, so builds stay deterministic, reproducible, and independent of third-party uptime. The ingestion layer runs sequentially against an unauthenticated, rate-limited public API with throttled delays, retry and backoff, exposed as a re-runnable refresh script so the dataset regenerates on demand without touching application code.",
+      "Derived logic converts raw temperature and precipitation series into per-page judgments — average high and low in °C and °F, monthly rainfall, estimated rainy-day counts, and a Great / Good / Mixed / Avoid comfort verdict from defined threshold rules — so every page carries an answer rather than a data dump. A variable-driven copy layer templates titles, meta descriptions, H1s, intros, and packing recommendations with varied sentence construction to avoid scaled-content classification, and the entire technical SEO surface (sitemap, robots, canonicals, JSON-LD, BreadcrumbList) is generated from the same arrays that drive the routes. Adding one destination to a config array produces 12 new pages, a new hub, updated sitemap entries, and fully rewired internal linking — no template or route changes.",
+      "Instrumented in Google Search Console from day one to validate the pipeline end to end. From a cold-start domain with zero backlinks, pages were crawled and indexed within about ten days and began surfacing against real long-tail queries, with the structured data accepted by Google as a valid enhancement — confirming the whole generation approach works in production, not just in theory.",
+    ],
+    metrics: ["208 static URLs", "~55K climate records", "Indexed in ~10 days", "Zero-touch scaling"],
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Open-Meteo API", "Vercel"],
+    links: [
+      { label: "Live site", href: "https://monthwisetravel.vercel.app" },
+      { label: "Source", href: "https://github.com/SaadBinYounas-SE/monthwisetravel" },
+    ],
+    diagram: "seo",
+  },
+  {
+    index: "03",
+    title: "YelpScraper — Lead-Gen Scraper & Dashboard",
+    category: "Data Product",
+    year: "2026",
+    role: "Sole Developer",
+    featured: true,
+    blurb:
+      "A delivered, multi-user lead-generation dashboard — scraping business listings on demand and streaming them live into a searchable, exportable table.",
+    description: [
+      "A production web dashboard that scrapes Yelp business listings by any search term and U.S. location, on demand. Results stream live into a searchable, filterable, CSV-exportable table with per-business detail panels, full search history across every prior batch, and advanced AND-condition filtering over any field. Multi-user by design: email/password accounts, each user’s data stored privately and deduplicated by business, so re-running a search updates existing records instead of duplicating them.",
+      "React 19 + Vite on Vercel; a Python/Flask backend streaming results to the dashboard over Server-Sent Events; Playwright headless Chromium with BeautifulSoup parsing; PostgreSQL in Docker on a Contabo VPS, with JWT + bcrypt auth. A “deep search” mode visits each individual business profile to pull the three fields Yelp only exposes conditionally — present on roughly 60% of businesses in a sample run — bringing the capture to 14+ fields per record.",
+      "The hard part was never the scraper. Yelp sits behind an enterprise anti-bot system that blocks at the browser-fingerprint and IP-reputation level, so rotating proxies does not solve it — and it was the blocker that had stalled this build before I took it on. I diagnosed the failure as infrastructure-level rather than code-level and integrated a purpose-built unlocker service as a drop-in abstraction inside the existing Playwright layer, leaving the dashboard and data layer untouched.",
+      "Nine days from first client contact to a working end-to-end demo, about two weeks of active build, four weeks to full handover — source in the client’s own repo with commit history, environment variables, server credentials, and a generated PDF technical document covering architecture, stack rationale, schema, endpoints, and env reference. Hosting was engineered down to a flat ~$5–7/month, deliberately kept independent of data and traffic growth.",
+    ],
+    metrics: ["14+ fields per business", "Live result streaming", "Anti-bot layer solved", "Flat, traffic-independent hosting"],
+    tech: ["React", "TypeScript", "Python", "Flask", "Playwright", "PostgreSQL", "Docker", "Tailwind CSS", "Vercel"],
+    diagram: "scraper",
+  },
+  {
+    index: "04",
     title: "ShiftGrit — AI Medical Booking Automation",
     category: "AI Voice Automation",
     year: "2025 — 2026",
     role: "Automation Architect",
-    featured: true,
     blurb:
       "A Retell AI voice agent that books medical appointments end-to-end — checking live availability and orchestrating the whole post-call pipeline.",
     description: [
@@ -301,12 +423,11 @@ export const projects: Project[] = [
     diagram: "voice",
   },
   {
-    index: "03",
+    index: "05",
     title: "BrandLift AI — Brand Content Generator",
     category: "AI Product",
     year: "2026",
     role: "Full-Stack Developer",
-    featured: true,
     blurb:
       "Turns any website URL into branded social content — scraping brand tone from the DOM, then generating posts and video with Imagen 3 + Veo.",
     description: [
@@ -318,7 +439,7 @@ export const projects: Project[] = [
     diagram: "generate",
   },
   {
-    index: "04",
+    index: "06",
     title: "Sidago CRM — Airtable Platform",
     category: "No-Code Platform",
     year: "2025",
@@ -326,7 +447,7 @@ export const projects: Project[] = [
     blurb:
       "The predecessor CRM I owned solo — a 16-table, 489-field Airtable base running a full sales floor with 40+ custom automations.",
     description: [
-      "The predecessor production CRM running the same multi-brand telesales business — a 16-table, 489-field Airtable base spanning 3 brands and ~40K leads, operating the client’s full sales floor (agents, dialing, validation, leaderboards, fixer workflows) until the full-stack migration.",
+      "The predecessor production CRM running the same multi-brand telesales business — a 16-table, 489-field Airtable base spanning 3 brands and ~36K leads, operating the client’s full sales floor (agents, dialing, validation, leaderboards, fixer workflows) until the full-stack migration.",
       "Sole developer and maintainer: 40+ custom JavaScript automations (lead assignment, call-result handling, hot-lead lifecycle, leaderboard scoring, nightly sync), Mighty Caller VoIP with automated daily JWT refresh, Numverify + NeverBounce validation, and a self-hosted N8N instance offloading staged processing beyond platform-native limits.",
     ],
     metrics: ["16 tables · 489 fields", "40+ automations", "Self-hosted N8N"],
@@ -334,7 +455,7 @@ export const projects: Project[] = [
     diagram: "airtable",
   },
   {
-    index: "05",
+    index: "07",
     title: "AI Restaurant — Inbound Voice Agent",
     category: "AI Voice Concept",
     year: "2025",
@@ -350,7 +471,7 @@ export const projects: Project[] = [
     diagram: "restaurant",
   },
   {
-    index: "06",
+    index: "08",
     title: "EasyRozee — Affiliate Marketing Platform",
     category: "Mobile App (FYP)",
     year: "2024 — 2025",
@@ -366,7 +487,7 @@ export const projects: Project[] = [
     diagram: "mobile",
   },
   {
-    index: "07",
+    index: "09",
     title: "Airtable ↔ Google Sheets Real-Time Sync",
     category: "Integration Tool",
     year: "2026",
