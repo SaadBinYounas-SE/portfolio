@@ -64,7 +64,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* Every route ends here. */}
         <ContactBlock />
         <Footer />
-        <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[70] opacity-[0.22]" />
+        <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[70] opacity-[0.13]" />
       </body>
     </html>
   );
