@@ -96,7 +96,7 @@ export default function ContactBlock() {
               <div>
                 <p className="display text-[clamp(2.5rem,5vw,4rem)]">Message sent.</p>
                 <p className="mt-5 max-w-sm text-lg">
-                  It’s in my inbox. I reply by email, usually within a day or two.
+                  It’s in my inbox. I’ll reply by email.
                 </p>
               </div>
               <button type="button" onClick={() => setStatus("idle")} className="link-rule mt-10 self-start font-medium">
