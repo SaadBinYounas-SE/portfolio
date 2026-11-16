@@ -1,23 +1,32 @@
-import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
+import Header from "@/components/Header";
+import ContactBlock from "@/components/ContactBlock";
+import Footer from "@/components/Footer";
+import Motion from "@/components/Motion";
 import "./globals.css";
 
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
+const grotesk = localFont({
+  src: "./fonts/HostGrotesk.woff2",
+  variable: "--font-grotesk",
+  weight: "300 800",
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const martian = localFont({
+  src: "./fonts/MartianMono.woff2",
+  variable: "--font-martian",
+  weight: "100 800",
   display: "swap",
 });
+
+const title = "Saad Bin Younas — Full-Stack & Automation Engineer";
+const description =
+  "Software engineer working across full-stack development, automation engineering, and AI integrations — owning systems end-to-end, from database architecture and design documentation through production code, deployment, and team review.";
 
 export const metadata: Metadata = {
-  title: "Saad Bin Younas — Full-Stack Engineer & Automation Engineer",
-  description:
-    "Software engineer working across full-stack development, automation engineering, and AI integrations — owning systems end-to-end, from database architecture and design documentation through production code, deployment, and team review.",
+  title: { default: title, template: "%s — Saad Bin Younas" },
+  description,
   keywords: [
     "Saad Bin Younas",
     "Full-Stack Engineer",
@@ -33,7 +42,7 @@ export const metadata: Metadata = {
     "Lahore",
   ],
   openGraph: {
-    title: "Saad Bin Younas — Full-Stack Engineer & Automation Engineer",
+    title,
     description:
       "I own systems end-to-end — from database architecture and design docs to production code, deployment, and team review.",
     type: "website",
@@ -41,17 +50,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#eef0ee",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        {children}
-        {/* Paper grain over everything — pointer-transparent, very low opacity */}
-        <div aria-hidden className="noise pointer-events-none fixed inset-0 z-[70] opacity-[0.16]" />
+    <html lang="en" className={`${grotesk.variable} ${martian.variable} antialiased`}>
+      <body id="top" className="flex min-h-dvh flex-col">
+        <Header />
+        <main id="main" className="flex-1">
+          <Motion>{children}</Motion>
+        </main>
+        {/* Every route ends here. */}
+        <ContactBlock />
+        <Footer />
+        <div aria-hidden className="grain pointer-events-none fixed inset-0 z-[70] opacity-[0.11]" />
       </body>
     </html>
   );

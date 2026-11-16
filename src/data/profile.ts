@@ -280,7 +280,7 @@ export const skillGroups: SkillGroup[] = [
   },
 ];
 
-/** Hero marquee belt — keys must match techIcons so each shows its brand logo. */
+/** Logo belt under the hero — keys must match techIcons so each shows its brand logo. */
 export const marqueeItems = [
   "React",
   "Next.js",
@@ -308,6 +308,8 @@ export type ProjectLink = { label: string; href: string };
 
 export type Project = {
   index: string;
+  /** URL segment for the case-study page: /work/<slug>. */
+  slug: string;
   title: string;
   category: string;
   year: string;
@@ -336,6 +338,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
+    slug: "sidago-crm",
     title: "Sidago CRM — Multi-Brand White-Label Platform",
     category: "Full-Stack Platform",
     year: "2025 — Present",
@@ -366,6 +369,7 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    slug: "monthwisetravel",
     title: "MonthWiseTravel — Programmatic SEO Engine",
     category: "Programmatic SEO",
     year: "2026",
@@ -389,6 +393,7 @@ export const projects: Project[] = [
   },
   {
     index: "03",
+    slug: "yelpscraper",
     title: "YelpScraper — Lead-Gen Scraper & Dashboard",
     category: "Data Product",
     year: "2026",
@@ -408,6 +413,7 @@ export const projects: Project[] = [
   },
   {
     index: "04",
+    slug: "shiftgrit",
     title: "ShiftGrit — AI Medical Booking Automation",
     category: "AI Voice Automation",
     year: "2025 — 2026",
@@ -424,6 +430,7 @@ export const projects: Project[] = [
   },
   {
     index: "05",
+    slug: "brandlift-ai",
     title: "BrandLift AI — Brand Content Generator",
     category: "AI Product",
     year: "2026",
@@ -440,6 +447,7 @@ export const projects: Project[] = [
   },
   {
     index: "06",
+    slug: "sidago-airtable",
     title: "Sidago CRM — Airtable Platform",
     category: "No-Code Platform",
     year: "2025",
@@ -456,6 +464,7 @@ export const projects: Project[] = [
   },
   {
     index: "07",
+    slug: "ai-restaurant",
     title: "AI Restaurant — Inbound Voice Agent",
     category: "AI Voice Concept",
     year: "2025",
@@ -472,6 +481,7 @@ export const projects: Project[] = [
   },
   {
     index: "08",
+    slug: "easyrozee",
     title: "EasyRozee — Affiliate Marketing Platform",
     category: "Mobile App (FYP)",
     year: "2024 — 2025",
@@ -488,6 +498,7 @@ export const projects: Project[] = [
   },
   {
     index: "09",
+    slug: "airtable-sheets-sync",
     title: "Airtable ↔ Google Sheets Real-Time Sync",
     category: "Integration Tool",
     year: "2026",
@@ -504,14 +515,45 @@ export const projects: Project[] = [
   },
 ];
 
+/** "Sidago CRM — Multi-Brand White-Label Platform" → ["Sidago CRM", "Multi-Brand White-Label Platform"] */
+export function splitTitle(title: string): [string, string | null] {
+  const [name, ...rest] = title.split(" — ");
+  return [name, rest.length ? rest.join(" — ") : null];
+}
+
+export function getProject(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+/* ------------------------------------------------------------------ */
+/* Delivery lifecycle — the stages owned on every engagement           */
+/* ------------------------------------------------------------------ */
+
+export const lifecycle = [
+  { stage: "Scope", detail: "Requirements, proposals, discovery docs" },
+  { stage: "Architect", detail: "Schemas, services, system design" },
+  { stage: "Build", detail: "Type-safe backends, fast frontends" },
+  { stage: "Integrate", detail: "AI, voice, automation, third parties" },
+  { stage: "Deploy", detail: "Migrations, releases, infrastructure" },
+  { stage: "Operate", detail: "Reviews, incidents, handover" },
+] as const;
+
+/** One-line run summaries shown in the hero readout — each is a fact from a project above. */
+export const runLog = [
+  { job: "sidago-crm", action: "migrate", result: "~700K rows" },
+  { job: "monthwisetravel", action: "build", result: "208 pages" },
+  { job: "yelpscraper", action: "stream", result: "14+ fields" },
+  { job: "shiftgrit", action: "book", result: "zero-touch" },
+  { job: "sidago-airtable", action: "automate", result: "40+ scripts" },
+  { job: "brandlift-ai", action: "generate", result: "url to ads" },
+] as const;
+
 /* ------------------------------------------------------------------ */
 /* Navigation                                                          */
 /* ------------------------------------------------------------------ */
 
 export const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
