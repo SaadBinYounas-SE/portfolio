@@ -7,8 +7,19 @@ A running record of the UI/UX rebuild so the work can be picked up from any poin
 
 | Branch | What it holds |
 | --- | --- |
-| `original` | The old site, frozen at commit `3ee0735` (copied from `main` before any change). |
+| `original` | The old site, copied from `main` at commit `3ee0735` before any change (plus one empty commit to trigger its deployment). |
 | `main` | The rebuilt site. Vercel deploys this to production. |
+| `rebuild-wip` | Leftover checkpoint branch from the build. Identical in content to `main`; safe to delete on GitHub. |
+
+## Live
+
+| What | URL |
+| --- | --- |
+| New site (production, from `main`) | https://portfolio-sable-kappa-cv60nuazfx.vercel.app |
+| Original site (from `original`) | https://portfolio-git-original-saadbinyounas-ses-projects.vercel.app |
+
+The original lives on a Vercel branch URL. To put it on a custom address, add a domain in the Vercel
+project (Settings → Domains) and assign it to the `original` branch.
 
 ## Brief (from Saad)
 
@@ -82,7 +93,9 @@ turns all of it off.
 - [x] 8. About and contact pages, 404
 - [x] 9. Build + lint clean, desktop and mobile checked
 - [x] 10. Pushed to `main` (Vercel deploys it automatically)
-- [ ] 11. Local folder `D:\Portfolio\saad-portfolio` synced with `main`
+- [x] 11. Local folder `D:\Portfolio\saad-portfolio` synced with `main`
+
+Rebuild complete on 16 Nov 2026. Anything after this is iteration.
 
 ## Decisions worth knowing
 
